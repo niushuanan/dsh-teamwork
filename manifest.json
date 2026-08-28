@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "kind": "xiaozhuang-dsh-plugin-export",
-  "createdAt": "2026-08-28T18:20:15.334Z",
-  "sourceCommit": "664b5237564430932e01475ff05da8fb413dfbba",
+  "createdAt": "2026-08-28T18:22:12.181Z",
+  "sourceCommit": "89ac9cc0eded6a9192c15631ff6964ac2d438d23",
   "plugins": [
     {
       "id": "teamwork",

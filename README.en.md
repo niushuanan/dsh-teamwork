@@ -31,4 +31,4 @@ Use DSH-native Sub-Agents by default under one coordinating agent, escalate sele
 
 ## Source and license
 
-This repository is a one-way distribution mirror of [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh), not an independent development source. It is synchronized from main-repository commit [`664b523756`](https://github.com/niushuanan/xiaozhuang-dsh/commit/664b5237564430932e01475ff05da8fb413dfbba); the latest tagged release remains [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-teamwork/releases/tag/xiaozhuang-v0.4.2). Licensed under the [MIT License](LICENSE).
+This repository is a one-way distribution mirror of [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh), not an independent development source. It is synchronized from main-repository commit [`89ac9cc0ed`](https://github.com/niushuanan/xiaozhuang-dsh/commit/89ac9cc0eded6a9192c15631ff6964ac2d438d23); the latest tagged release remains [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-teamwork/releases/tag/xiaozhuang-v0.4.2). Licensed under the [MIT License](LICENSE).
