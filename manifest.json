@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "kind": "xiaozhuang-dsh-plugin-export",
-  "createdAt": "2026-08-26T11:46:43.447Z",
-  "sourceCommit": "49b1c5207b1556515752c6bf9e7902c1a5964ad9",
+  "createdAt": "2026-08-28T18:20:15.334Z",
+  "sourceCommit": "664b5237564430932e01475ff05da8fb413dfbba",
   "plugins": [
     {
       "id": "teamwork",
@@ -26,6 +26,7 @@
           "config": {
             "provider": "codex",
             "toolName": "subagent_codex",
+            "routingGuidance": "Use Codex for difficult coding, architecture, debugging, refactoring, or rigorous independent code review.",
             "backgroundMode": "one-shot",
             "maxDepth": "provider-managed"
           }
@@ -46,6 +47,7 @@
           "config": {
             "provider": "zcode",
             "toolName": "subagent_zcode",
+            "routingGuidance": "Use Z Code for an alternative-model implementation, verification, product-behavior check, or independent second opinion.",
             "backgroundMode": "one-shot",
             "maxDepth": "provider-managed"
           }
@@ -67,6 +69,18 @@
         {
           "kind": "repository",
           "path": "packages/subagent/tool-subagent"
+        },
+        {
+          "kind": "repository",
+          "path": "packages/preset/agent-presets/presets/standard"
+        },
+        {
+          "kind": "repository",
+          "path": "packages/preset/agent-presets/presets/ptc"
+        },
+        {
+          "kind": "repository",
+          "path": "packages/preset/agent-presets/presets/cordis"
         }
       ]
     }
@@ -84,18 +98,18 @@
     },
     {
       "path": "payload/teamwork/profile/team-work/lib/client.js",
-      "size": 59687,
-      "sha256": "787a38503aa3abd311b0a42a0a922e9c9bb3d51b315f01d7873a2183cef64d04"
+      "size": 59705,
+      "sha256": "cff4244b34a585db693f8c13a393cd531b361c05d1e4dadad24ee148ded5024a"
     },
     {
       "path": "payload/teamwork/profile/team-work/lib/index.js",
-      "size": 14150,
-      "sha256": "992c882699e93343144961df455ff1b378dff9d4a60514595b19b39ee2f7a5ec"
+      "size": 15872,
+      "sha256": "eaaef53f7a2802031a90792d1992154af729960ae2f10bef1aa8bc86bd5a140a"
     },
     {
       "path": "payload/teamwork/profile/team-work/package.json",
       "size": 506,
-      "sha256": "ad3605a2304b08f315fc6c3cc8cffae90c6c5d0dcdc9f6d101d8b5f73a11d2d1"
+      "sha256": "1b798b384a981a485f1b57929b7d0fcb6d83326ef49075a7feae7f23911aa613"
     },
     {
       "path": "payload/teamwork/profile/zcode-subagent/lib/index.js",
@@ -109,13 +123,13 @@
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/README.md",
-      "size": 15939,
-      "sha256": "fe8d46a8422925d654968f0e55868c35d6d31b1e7cd070985dcb9437bf3ee3c4"
+      "size": 14931,
+      "sha256": "d40f1fa65699cebd4dd4b92e2f0f83695c607debdc0fbfe3c25da7ce52f4f6ff"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/README.zh.md",
-      "size": 15311,
-      "sha256": "5c2b5c52ff0fb58097d109b9fffd35e6346f784d9576666e537b6df18b61e7e5"
+      "size": 13879,
+      "sha256": "09947618383692aa3e27ce06787967e7297afdd7a8c1632289259b533bde79b4"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/cordis.patch.yml",
@@ -124,8 +138,8 @@
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/lib/index.js",
-      "size": 32881,
-      "sha256": "534dabfb5ddcd9d643bbf25ec0e76cf255cbed06a311eac5e495937d65ab8b71"
+      "size": 31341,
+      "sha256": "23081999cda629d90002c30d8426446c10d1addb051e1cf09afe2898fb03eaad"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/lib/invariant.js",
@@ -134,8 +148,8 @@
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/lib/types/index.d.ts",
-      "size": 1687,
-      "sha256": "1882b4014cbe27cbf0d0b99a7087a990cb64cceb149da78b57da4488cc0149f3"
+      "size": 1618,
+      "sha256": "fedf528be950653a8458722189588504f6492d945649250f70e9aa53187f0b9d"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/lib/types/invariant.d.ts",
@@ -144,23 +158,23 @@
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/lib/types/run.d.ts",
-      "size": 3907,
-      "sha256": "61b5e161dd2f3d36239729a849ef6be2c920276ed61aad03199c680965dfdeb3"
+      "size": 3781,
+      "sha256": "e7fdad26f6718ffd4bf3a2cf2a90e0f4b3587688637649f0334f1f7f2495f160"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/lib/types/wire.d.ts",
-      "size": 4989,
-      "sha256": "2199db85056b39da58e2ae183867bc4a8cfc44e70d1bb9827e2fa93766293ac4"
+      "size": 4630,
+      "sha256": "cd829cbf231bb301e5b35a454eb9e0469628c653dad92c71689ae7e137bf161f"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/package.json",
-      "size": 2028,
-      "sha256": "8a991479843e041aa8c4ae989e92de63d3c7d75f74d8169d3a4c3ee16996e75a"
+      "size": 2363,
+      "sha256": "6ff189b280d73c8efe52eeb442fbf57cfcbc0be691d9bea68d5af906057958ce"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/src/index.ts",
-      "size": 4819,
-      "sha256": "e56d2d16817aa274d4b12269e822f897a8a1bd7742619161cdcd7c619af116a2"
+      "size": 4606,
+      "sha256": "d4e6ede87b36021584d27af35b920dd035d0d40487eaf42cd3313b1d780dee20"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/src/invariant.ts",
@@ -169,13 +183,13 @@
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/src/run.ts",
-      "size": 15170,
-      "sha256": "d3cf01aec029b976be3398ba975d794fb4bd3120a1a45a5eb7cca72325266c5f"
+      "size": 14956,
+      "sha256": "eeb908b39adef8dd400d0a3912be58a16e6bbea58ec16b164e100f45bef8c019"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/src/wire.ts",
-      "size": 25524,
-      "sha256": "5984ab4fe6f4cd048300ab1fc6abefd3dd22e8ff954798dc722a8e2509778a4c"
+      "size": 24009,
+      "sha256": "594a4386335bc81b0e56edab764afacedaab1bae157d82b905ca7587af7ab9e4"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/subagent-codex/tsconfig.json",
@@ -184,28 +198,33 @@
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/tool-subagent/README.md",
-      "size": 9711,
-      "sha256": "518d77e804f480e117907abd91abe57dff4ab3b8ffbf035ff725be02bc72ddab"
+      "size": 17278,
+      "sha256": "17c3c8a0003be427acb147524294e3acc1a19b6a9b0e96f749e01f878cea9bbe"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/tool-subagent/README.zh.md",
-      "size": 9387,
-      "sha256": "b3d589ed344097d93be9e427c61edfd226db307bad486e312db87c9b9e522487"
+      "size": 16374,
+      "sha256": "ad6c278e440439b99591a5d8f3b89ad1485579a8de9f7e9062cb6e092fe0da3a"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/tool-subagent/lib/index.js",
-      "size": 13534,
-      "sha256": "926c0656efa687d22a8651fdd67c20a11b721f94826f2f2d02e03a07cce1b697"
+      "size": 34466,
+      "sha256": "08970737511ba3a1ff04688a223266b20254af01ba59621221cbc8b7fac44398"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/tool-subagent/lib/invariant.js",
-      "size": 909,
-      "sha256": "903fcb5a74a5174200b03b492c685f5c4c1108701057f44d945bb00435a7e9db"
+      "size": 3947,
+      "sha256": "373901ecd3aa2367ea6bcf35aa673df58ff8bb2db81cdea4e8fafa10ed5684c9"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/subagent/tool-subagent/lib/model-selection-settings.js",
+      "size": 3899,
+      "sha256": "a203d7ddc88c7dd19c300c8d4acd622eb33f6f9eea61593153dbb9b69de0efaf"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/tool-subagent/lib/types/index.d.ts",
-      "size": 3101,
-      "sha256": "86724da67db76c325ff529a4ec594fbfbc463529e9465f47e7c54257ab722f9c"
+      "size": 3512,
+      "sha256": "175f6b4042a7315e3bb4d52cc8e7edf7fa05fe2d516408fc00ed92d7dce826b0"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/tool-subagent/lib/types/invariant.d.ts",
@@ -213,24 +232,99 @@
       "sha256": "4804f8deaa6c866b7da3346fc3fd1f7f803a643dc0a33fda1ff64c067ed95efa"
     },
     {
+      "path": "payload/teamwork/repository/packages/subagent/tool-subagent/lib/types/list-models.d.ts",
+      "size": 556,
+      "sha256": "b72845621d55a000a107e0ce9f960817587e2dd4275fea80ed92d17d7f6f7be7"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/subagent/tool-subagent/lib/types/model-selection-settings.d.ts",
+      "size": 2122,
+      "sha256": "6f38574c487bf73b7c3e7162968b609b8249a6c2f8f97094ade34014520bf454"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/subagent/tool-subagent/lib/types/model-selection-state.d.ts",
+      "size": 1539,
+      "sha256": "70cf8cd01003bc48186cc32a3f39da7907857e7300fd1bf7d6d232bc9d999289"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/subagent/tool-subagent/lib/types/model-selection.d.ts",
+      "size": 4513,
+      "sha256": "edfcdda45d1c7ef22418c858f299626f6ab636ad84039a6b29b83bfa73677f8d"
+    },
+    {
       "path": "payload/teamwork/repository/packages/subagent/tool-subagent/package.json",
-      "size": 2107,
-      "sha256": "b45f95e397ec625c9eac759a98d5be43d31d419337b58e567619cf35cacd0878"
+      "size": 2538,
+      "sha256": "6b7bba819e1281e41d74226535ffbe195f287553b3b25e27386cc17a80e12ba7"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/tool-subagent/src/index.ts",
-      "size": 21898,
-      "sha256": "29f00ba61beb989ea5bca3e0bbb8788ff5f810a25a4504d8d0f469e17e35a36e"
+      "size": 33736,
+      "sha256": "096ac7df1419eea227454bbcf73526d86ec833a3d61d510f9bffc3f478afd87d"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/tool-subagent/src/invariant.ts",
-      "size": 1083,
-      "sha256": "acc44c2f3759826416f9147ab0ed38831ed06d4dce0a4172365a424fc29b84da"
+      "size": 1986,
+      "sha256": "16c50e7637eb8ffe2b3b12d7ef921f2f71256658c5bd0afdea9e7aab2f472a6b"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/subagent/tool-subagent/src/list-models.ts",
+      "size": 5063,
+      "sha256": "90e8adaa3188aca4b1f1437b43094969a069324de84e44bdbb5dccaf96198067"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/subagent/tool-subagent/src/model-selection-settings.ts",
+      "size": 3664,
+      "sha256": "d2123a2a10eda12c4cb5e01ae77377c9706c11beb031e6b0da65a75612750804"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/subagent/tool-subagent/src/model-selection-state.ts",
+      "size": 2084,
+      "sha256": "ce4b0810b9a96171231e0fc97d3fa25a3a1d8738c6d594cba6547e4ada9463fd"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/subagent/tool-subagent/src/model-selection.ts",
+      "size": 8489,
+      "sha256": "3e874dbca18bd6f672b4a0c6d2a2dfd514ede1b515ba9123d2b0c9a94b729724"
     },
     {
       "path": "payload/teamwork/repository/packages/subagent/tool-subagent/tsconfig.json",
-      "size": 679,
-      "sha256": "e28ae24b856dd180b6d1a7d34afe920fe5148740b2d2e011370a5df374f4da25"
+      "size": 826,
+      "sha256": "73f2a384e2aedbda82b1ab9c1c3939ee3dcd7f965bc701a1d8e1a7636772dc2d"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/subagent/tool-subagent/tsdown.config.ts",
+      "size": 485,
+      "sha256": "de90c3a4ecc9ff162cb9bdc3d726ebad0ecde669a8fe23750650e6a7d45abb2d"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/preset/agent-presets/presets/standard/agent.cordis.yml",
+      "size": 13658,
+      "sha256": "7259f18372d4267f60246705cf635821ecf26ac141592964538065fd66c48bb5"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/preset/agent-presets/presets/standard/preset.yml",
+      "size": 176,
+      "sha256": "3c61b4ce68e5dd5cb2c099693fdcb30b91d5f22bbbef546e233321b0fa68f0e4"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/preset/agent-presets/presets/ptc/agent.cordis.yml",
+      "size": 14156,
+      "sha256": "fdc0517213a3659318a4512f8e386ebea9b84b7299db978bfe6ddd3a2043ab94"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/preset/agent-presets/presets/ptc/preset.yml",
+      "size": 173,
+      "sha256": "082e57fd87ea5ff16998f33a33dc7c1b197b282c887b58b2d62ebd3a689a4648"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/preset/agent-presets/presets/cordis/agent.cordis.yml",
+      "size": 14740,
+      "sha256": "890c4a497f4a6888af10d4449c1fa23f89f740dab31349b707c76c0c5576a258"
+    },
+    {
+      "path": "payload/teamwork/repository/packages/preset/agent-presets/presets/cordis/preset.yml",
+      "size": 180,
+      "sha256": "7c5f009d82dda01b0e3b4e24c143eaa988f275a8322719800a574bd05c72c0da"
     }
   ],
   "excludes": [
@@ -242,8 +336,5 @@
     "sessions",
     "conversation history",
     "user settings"
-  ],
-  "repository": "https://github.com/niushuanan/dsh-teamwork",
-  "releaseTag": "xiaozhuang-v0.4.2",
-  "sourceRepository": "https://github.com/niushuanan/xiaozhuang-dsh"
+  ]
 }

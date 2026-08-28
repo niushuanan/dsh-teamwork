@@ -33,12 +33,10 @@ export declare function codexAppServerArgv(): string[];
 export interface CodexRunSpec {
     /** Parent Session workspace, also supplied to `thread/start`. */
     readonly cwd: string;
+    /** Profile-selected native model; omitted to preserve Codex settings. */
+    readonly model?: string;
     /** Profile-selected native non-interactive permission mode. */
     readonly permissionMode: CodexPermissionMode;
-    /** Optional model override for the delegated Codex turn. */
-    readonly model?: string | undefined;
-    /** Optional reasoning-effort override for the delegated Codex turn. */
-    readonly reasoningEffort?: string | undefined;
     /** Explicit deployment/test environment layered after the shared scrub. */
     readonly env: Record<string, string>;
     /** Subprocess termination grace passed to the shared process-tree owner. */

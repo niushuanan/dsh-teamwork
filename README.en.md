@@ -4,7 +4,7 @@ English | [中文](README.md)
 
 [![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-111111)](https://github.com/niushuanan/xiaozhuang-dsh) [![Release](https://img.shields.io/badge/release-xiaozhuang--v0.4.2-2563eb)](https://github.com/niushuanan/dsh-teamwork/releases/tag/xiaozhuang-v0.4.2) [![MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
 
-Run collaborating agents and external experts concurrently under one coordinating agent, then bring every result back into the current task.
+Use DSH-native Sub-Agents by default under one coordinating agent, escalate selectively to Codex or Z Code, and bring every result back into the current task. External experts are runtime hot-pluggable.
 
 <p align="center"><img src="docs/02-teamwork.webp" alt="Teamwork collaboration settings" width="800"></p>
 
@@ -15,9 +15,12 @@ Run collaborating agents and external experts concurrently under one coordinatin
 3. Tell the AI: **Read AGENTS.md, INSTALL.md, and manifest.json first. Install only this plugin and preserve existing plugins, data, conversations, attachments, and settings.**
 4. The installing AI merges the code and Cordis rows into the target version and validates only the entry points directly owned by this plugin.
 
-## Requirements
+## Native collaboration model
 
-- The target DSH needs at least one working subagent provider. Enable the Codex and Z Code rows only when their local runtimes are available.
+- Native `subagent` and `subagent_fork` are the default execution pool; routine work does not call external experts just to fill seats.
+- Codex and Z Code use DSH's existing Provider and tool protocols. Enabling a Provider adds its tool; disabling it removes the tool from the same session without restarting the Host.
+- Teamwork tells the coordinator only about experts that are currently callable. Nested native Sub-Agents and external experts share one five-worker concurrency limit.
+- The package includes expert-tool configuration for the native `standard`, `ptc`, and `cordis` presets. Chat and minimal presets do not receive broader authority.
 
 ## Contents
 
@@ -28,4 +31,4 @@ Run collaborating agents and external experts concurrently under one coordinatin
 
 ## Source and license
 
-This repository is a one-way distribution mirror of [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh), not an independent development source. It is synchronized from main-repository commit [`49b1c5207b`](https://github.com/niushuanan/xiaozhuang-dsh/commit/49b1c5207b1556515752c6bf9e7902c1a5964ad9) and released as [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-teamwork/releases/tag/xiaozhuang-v0.4.2). Licensed under the [MIT License](LICENSE).
+This repository is a one-way distribution mirror of [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh), not an independent development source. It is synchronized from main-repository commit [`664b523756`](https://github.com/niushuanan/xiaozhuang-dsh/commit/664b5237564430932e01475ff05da8fb413dfbba); the latest tagged release remains [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-teamwork/releases/tag/xiaozhuang-v0.4.2). Licensed under the [MIT License](LICENSE).

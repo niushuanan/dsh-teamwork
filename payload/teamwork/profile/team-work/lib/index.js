@@ -29,26 +29,58 @@ export const name = 'team-work'
 
 // 关键依赖显式 inject；投影与命令是可选子能力，在 apply 内通过 ctx.inject
 // 注册，从而保留 headless composition 的兼容性。
-export const inject = ['systemPrompt', 'agents', 'agentPresets']
+export const inject = ['systemPrompt', 'agents', 'agentPresets', 'subagents']
 
 const TEAM_PRESET = 'team-work'
 const MAX_CONCURRENT = 5
 
-const TEAMWORK_CONTEXT_TEXT = [
+const EXTERNAL_EXPERTS = Object.freeze([
+  {
+    provider: 'codex',
+    tool: 'subagent_codex',
+    label: 'Codex',
+    purpose: 'difficult coding, architecture, debugging, refactoring, or rigorous independent code review',
+  },
+  {
+    provider: 'zcode',
+    tool: 'subagent_zcode',
+    label: 'Z Code',
+    purpose: 'an alternative-model implementation, verification, product-behavior check, or independent second opinion',
+  },
+])
+
+const TEAMWORK_BASE_CONTEXT = [
   'Team Work mode is active for this session: a huge-task workflow. Plan first, then delegate.',
   '1. While plan mode is active, only plan: explore, inspect, and produce the complete project plan through exit_plan_mode. Do not implement anything before the user approves that plan.',
   '2. Native execution is the default. After approval, decompose the plan into self-contained subtasks. Use subagent for fresh independent work and subagent_fork only when the child needs completed conversation context. Start independent native delegations together in one message and prefer their background path. Routine implementation, research, and testing stay in this native pool.',
-  '3. External escalation is selective, never a quota to fill. Do not automatically call Codex or Z Code for ordinary tasks. Escalate only when the work is genuinely complex, a native attempt is blocked or insufficient, an independent review materially reduces risk, or the user explicitly asks for that product. Use subagent_codex for difficult coding, architecture, debugging, refactoring, or rigorous code review. Use subagent_zcode for an independent alternative-model implementation, verification, product-behavior check, or second opinion. Give either a complete standalone prompt because neither inherits this conversation; prefer run_in_background: true and collect it through the Job tools.',
-  '4. Review must be independent. For a complex or high-risk change, assign review to a different lane from the implementer. A review prompt is read-only by default: inspect the implementation, diff, and relevant test evidence; return findings with severity and evidence; do not edit files unless the user or orchestrator explicitly asks for fixes. Normally use one external reviewer. Use both Codex and Z Code only for cross-cutting or unusually high-risk work, or when the first two opinions conflict.',
+]
+
+const TEAMWORK_TAIL_CONTEXT = [
   '5. Concurrency cap: keep at most 5 delegated workers running at the same time across native and external lanes. When 5 are running, wait for one to settle before dispatching the next one; the runtime rejects starts above the cap, so read tool results and adapt.',
   '6. You are the orchestrator: choose the cheapest capable lane, review each result, send follow-ups or corrections with send_message when needed, reconcile conflicting reviews, integrate the outcome, and report progress and completion to the user. Do not redo a delegated subtask\u2019s work yourself.',
-].join('\n')
+]
+
+export function teamworkContextText(subagents) {
+  const available = EXTERNAL_EXPERTS.filter(expert => subagents.getProvider(expert.provider) !== undefined)
+  const external = available.length === 0
+    ? [
+        '3. No external expert Provider is callable for this turn. Stay in the native subagent pool and do not call unavailable external tools.',
+        '4. Review must be independent. For a complex or high-risk change, assign review to a different native lane from the implementer. A review prompt is read-only by default: inspect the implementation, diff, and relevant test evidence; return findings with severity and evidence; do not edit files unless the user or orchestrator explicitly asks for fixes.',
+      ]
+    : [
+        '3. External escalation is selective, never a quota to fill. Do not automatically call an external expert for ordinary tasks. Escalate only when the work is genuinely complex, a native attempt is blocked or insufficient, an independent review materially reduces risk, or the user explicitly asks for that product. Callable external experts for this turn:',
+        ...available.map(expert => '- ' + expert.label + ' via ' + expert.tool + ': ' + expert.purpose + '.'),
+        'Give an external expert a complete standalone prompt because it does not inherit this conversation; prefer run_in_background: true and collect it through the Job tools.',
+        '4. Review must be independent. For a complex or high-risk change, assign review to a different lane from the implementer. A review prompt is read-only by default: inspect the implementation, diff, and relevant test evidence; return findings with severity and evidence; do not edit files unless the user or orchestrator explicitly asks for fixes. Normally use one external reviewer.'
+          + (available.length > 1 ? ' Use both ' + available.map(expert => expert.label).join(' and ') + ' only for cross-cutting or unusually high-risk work, or when the first two opinions conflict.' : ''),
+      ]
+  return [...TEAMWORK_BASE_CONTEXT, ...external, ...TEAMWORK_TAIL_CONTEXT].join('\n')
+}
 
 const TEAMWORK_DELEGATION_TOOLS = new Set([
   'subagent',
   'subagent_fork',
-  'subagent_codex',
-  'subagent_zcode',
+  ...EXTERNAL_EXPERTS.map(expert => expert.tool),
 ])
 
 function lastPreset(events) {
@@ -90,6 +122,16 @@ function isTeamWork(session) {
   return session != null && foldTeamwork(session.events).active
 }
 
+function teamworkOwner(agents, agent) {
+  if (agent == null) return undefined
+  if (isTeamWork(agent.session)) return agent
+  if (agents === undefined) return undefined
+  return agents.list().find(candidate =>
+    candidate.id !== agent.id
+    && isTeamWork(candidate.session)
+    && agents.isOwnedBy(agent.id, candidate))
+}
+
 function countRunningChildren(agents, agent) {
   if (agents === undefined || agent == null) return 0
   let running = 0
@@ -104,6 +146,7 @@ function countRunningChildren(agents, agent) {
 export function apply(ctx) {
   const agents = ctx.get('agents')
   const agentPresets = ctx.get('agentPresets')
+  const subagents = ctx.get('subagents')
 
   // plan-mode 服务可能位于 host 平面，也可能在 agent 的 preset realm 内
   // （web profile 按会话隔离）。优先解析 agent 实际使用的那份：
@@ -164,7 +207,7 @@ export function apply(ctx) {
     order: 130,
     text: (context) => {
       const session = context != null && context.agent != null ? context.agent.session : undefined
-      return isTeamWork(session) ? TEAMWORK_CONTEXT_TEXT : ''
+      return isTeamWork(session) ? teamworkContextText(subagents) : ''
     },
   })
 
@@ -249,14 +292,14 @@ export function apply(ctx) {
   // 外部协作者没有 Harness child Session，但仍属于 Teamwork 的同一协作池。
   // 工具执行中间件覆盖显式点名和 Teamwork 自动调度两条入口。
   ctx.on('tools/execute', async (exec, next) => {
-    const agent = exec?.agent
-    if (agent == null || !isTeamWork(agent.session)
+    const owner = teamworkOwner(agents, exec?.agent)
+    if (owner == null
       || (exec.name !== 'subagent_codex' && exec.name !== 'subagent_zcode')) return next()
-    runningExternal.set(agent.id, (runningExternal.get(agent.id) ?? 0) + 1)
+    runningExternal.set(owner.id, (runningExternal.get(owner.id) ?? 0) + 1)
     try { return await next() } finally {
-      const remaining = (runningExternal.get(agent.id) ?? 1) - 1
-      if (remaining > 0) runningExternal.set(agent.id, remaining)
-      else runningExternal.delete(agent.id)
+      const remaining = (runningExternal.get(owner.id) ?? 1) - 1
+      if (remaining > 0) runningExternal.set(owner.id, remaining)
+      else runningExternal.delete(owner.id)
     }
   }, { global: true })
 
@@ -264,9 +307,9 @@ export function apply(ctx) {
   // 派发。
   ctx.on('tools/pre-execute', async (exec, next) => {
     if (exec == null || !TEAMWORK_DELEGATION_TOOLS.has(exec.name)) return next()
-    const agent = exec.agent
-    if (agent == null || !isTeamWork(agent.session)) return next()
-    const running = countRunningChildren(agents, agent) + (runningExternal.get(agent.id) ?? 0)
+    const owner = teamworkOwner(agents, exec.agent)
+    if (owner == null) return next()
+    const running = countRunningChildren(agents, owner) + (runningExternal.get(owner.id) ?? 0)
     if (running >= MAX_CONCURRENT) {
       return {
         kind: 'deny',

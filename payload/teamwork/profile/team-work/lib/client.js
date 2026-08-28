@@ -28,14 +28,14 @@ window.__ModuleLoader__.load({
         name: 'Codex',
         description: '用于复杂编码、架构判断、疑难调试与独立代码审查。',
         meta: '复杂任务升级 · 支持后台执行',
-        logo: COLLABORATOR_API + '/assets/codex.png',
+        logo: COLLABORATOR_API + '/assets/codex-brand-v2.png',
       },
       {
         id: 'zcode',
         name: 'Z Code',
         description: '用于第二视角实现、方案验证、产品行为检查与交叉审查。',
         meta: '复杂任务升级 · 支持后台执行',
-        logo: COLLABORATOR_API + '/assets/zcode.png',
+        logo: COLLABORATOR_API + '/assets/zcode-brand-v2.png',
       },
     ])
 
