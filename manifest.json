@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "kind": "xiaozhuang-dsh-plugin-export",
-  "createdAt": "2026-08-28T18:22:12.181Z",
-  "sourceCommit": "89ac9cc0eded6a9192c15631ff6964ac2d438d23",
+  "createdAt": "2026-08-29T08:18:00.000Z",
+  "sourceCommit": "e4845a81688efec24ecff6d9c61dfbe1b8194776",
   "plugins": [
     {
       "id": "teamwork",
@@ -98,8 +98,8 @@
     },
     {
       "path": "payload/teamwork/profile/team-work/lib/client.js",
-      "size": 59705,
-      "sha256": "cff4244b34a585db693f8c13a393cd531b361c05d1e4dadad24ee148ded5024a"
+      "size": 59811,
+      "sha256": "b3a137a4c25dae15363a5f416807079e8e6a5b1e07334456c9d2a61bc00fe3f6"
     },
     {
       "path": "payload/teamwork/profile/team-work/lib/index.js",

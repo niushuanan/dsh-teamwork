@@ -6,6 +6,8 @@
 
 在一个主 Agent 下优先调用 DSH 原生 Sub-Agent，并按需升级到 Codex、Z Code 外部专家；所有结果统一回到当前工作，外部专家可运行时热插拔。
 
+Teamwork 设置页复用产品统一标题层级；安装到尚未提供该共享组件的旧版 DSH 时会使用同尺寸的内置兼容标题，不影响热插拔安装。
+
 <p align="center"><img src="docs/02-teamwork.webp" alt="Teamwork 并发协作设置" width="800"></p>
 
 ## 安装
@@ -31,4 +33,4 @@
 
 ## 来源与许可
 
-本仓库是 [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh) 的单向发布副本，不是独立开发源。当前内容同步自主仓库 commit [`89ac9cc0ed`](https://github.com/niushuanan/xiaozhuang-dsh/commit/89ac9cc0eded6a9192c15631ff6964ac2d438d23)；最近正式发布版本仍为 [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-teamwork/releases/tag/xiaozhuang-v0.4.2)。代码采用 [MIT License](LICENSE)。
+本仓库是 [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh) 的单向发布副本，不是独立开发源。当前内容同步自主仓库 commit [`e4845a8168`](https://github.com/niushuanan/xiaozhuang-dsh/commit/e4845a81688efec24ecff6d9c61dfbe1b8194776)；最近正式发布版本仍为 [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-teamwork/releases/tag/xiaozhuang-v0.4.2)。代码采用 [MIT License](LICENSE)。

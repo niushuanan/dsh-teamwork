@@ -6,6 +6,8 @@ English | [中文](README.md)
 
 Use DSH-native Sub-Agents by default under one coordinating agent, escalate selectively to Codex or Z Code, and bring every result back into the current task. External experts are runtime hot-pluggable.
 
+The Teamwork Settings page reuses the product's shared title hierarchy. Older DSH builds without that primitive receive a size-matched built-in fallback, preserving hot-plug installation.
+
 <p align="center"><img src="docs/02-teamwork.webp" alt="Teamwork collaboration settings" width="800"></p>
 
 ## Install
@@ -31,4 +33,4 @@ Use DSH-native Sub-Agents by default under one coordinating agent, escalate sele
 
 ## Source and license
 
-This repository is a one-way distribution mirror of [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh), not an independent development source. It is synchronized from main-repository commit [`89ac9cc0ed`](https://github.com/niushuanan/xiaozhuang-dsh/commit/89ac9cc0eded6a9192c15631ff6964ac2d438d23); the latest tagged release remains [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-teamwork/releases/tag/xiaozhuang-v0.4.2). Licensed under the [MIT License](LICENSE).
+This repository is a one-way distribution mirror of [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh), not an independent development source. It is synchronized from main-repository commit [`e4845a8168`](https://github.com/niushuanan/xiaozhuang-dsh/commit/e4845a81688efec24ecff6d9c61dfbe1b8194776); the latest tagged release remains [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-teamwork/releases/tag/xiaozhuang-v0.4.2). Licensed under the [MIT License](LICENSE).

@@ -16,7 +16,13 @@ window.__ModuleLoader__.load({
       IconChevronDownOutline14,
       IconQuestionOutline14,
       IconTeamworkOutline16,
+      SettingsSectionHeader: SharedSettingsSectionHeader,
     } = require('@deepseek-ai/dsh-client-ui-primitives')
+    const SettingsSectionHeader = SharedSettingsSectionHeader ?? function SettingsSectionHeaderFallback(props) {
+      return React.createElement('header', { 'data-settings-section-header': 'true', style: { display: 'grid', gap: '4px', margin: '0 0 24px' } },
+        React.createElement('h2', { style: { margin: 0, fontSize: '20px', lineHeight: '28px', fontWeight: 600 } }, props.title),
+        props.description ? React.createElement('p', { style: { margin: 0, color: 'var(--dsw-alias-label-secondary)', fontSize: '13px', lineHeight: '20px' } }, props.description) : null)
+    }
     const MAX_CONCURRENT = 5
     const AUTO_REFRESH_MS = 15000
     const COLLABORATOR_API = '/plugins/xiaozhuang-plugins/api'
@@ -93,9 +99,6 @@ window.__ModuleLoader__.load({
       '.teamwork-footer-copy { flex:1; min-width:0; }',
       '.tw-settings { box-sizing:border-box; width:100%; max-width:640px; padding:0 0 28px; color:var(--dsw-alias-label-primary); }',
       '.tw-settings * { box-sizing:border-box; }',
-      '.tw-settings-head { padding:4px 14px 14px; }',
-      '.tw-settings-title { margin:0; font-size:21px; line-height:28px; font-weight:680; letter-spacing:-.028em; }',
-      '.tw-settings-intro { max-width:500px; margin:4px 0 0; color:var(--dsw-alias-label-secondary); font-size:11px; line-height:17px; }',
       '.tw-settings-error { margin:12px 4px 0; color:var(--dsw-alias-red-primary,#d92d20); font-size:11px; line-height:17px; }',
       '.tw-settings-section-title { display:flex; align-items:center; gap:10px; margin:20px 14px 0; color:var(--dsw-alias-label-secondary); font-size:11px; line-height:16px; font-weight:600; }',
       '.tw-settings-section-title::after { content:""; height:1px; flex:1; background:var(--dsw-alias-border-l1); }',
@@ -140,7 +143,7 @@ window.__ModuleLoader__.load({
       '.tw-parallel-meta { grid-column:1 / 3; display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:5px; color:var(--dsw-alias-label-tertiary); font-size:10px; line-height:15px; }',
       '.tw-parallel-meta strong { color:var(--dsw-alias-label-secondary); font-weight:600; }',
       '@media (max-width:720px) { .teamwork-panel { top:auto; right:10px; bottom:82px; left:10px; width:auto; max-width:none; max-height:min(62vh,520px); border-radius:15px; } }',
-      '@media (max-width:700px) { .tw-settings-head { padding-right:10px; padding-left:10px; } .tw-settings-title { font-size:19px; } .tw-settings-controls { gap:10px; } .tw-settings-row { grid-template-columns:36px minmax(0,1fr) auto; } }',
+      '@media (max-width:700px) { .tw-settings-controls { gap:10px; } .tw-settings-row { grid-template-columns:36px minmax(0,1fr) auto; } }',
       '@media (prefers-reduced-motion:reduce) { .teamwork-chip { transition:none; } }',
     ].join('\n')
 
@@ -585,10 +588,10 @@ window.__ModuleLoader__.load({
       }
 
       return React.createElement('div', { className: 'tw-settings' },
-        React.createElement('header', { className: 'tw-settings-head' },
-          React.createElement('h2', { className: 'tw-settings-title' }, 'Teamwork'),
-          React.createElement('p', { className: 'tw-settings-intro' }, '日常任务由产品原生子代理执行；复杂任务或独立复核时，再调用外部专家。'),
-        ),
+        React.createElement(SettingsSectionHeader, {
+          title: 'Teamwork',
+          description: '日常任务由产品原生子代理执行；复杂任务或独立复核时，再调用外部专家。',
+        }),
         error ? React.createElement('div', { className: 'tw-settings-error', role: 'alert' }, error) : null,
         React.createElement('div', { className: 'tw-settings-section-title' }, '协作方式'),
         React.createElement(ParallelDevelopmentRow, {
