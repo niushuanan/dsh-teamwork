@@ -1,136 +1,159 @@
 {
   "schemaVersion": 1,
   "kind": "xiaozhuang-dsh-plugin-export",
-  "createdAt": "2026-09-05T02:14:28.010Z",
-  "sourceCommit": "d5a0c6d8e816bd1d49c9c76b050c3ff36a2c8306",
+  "createdAt": "2026-09-05T04:05:53.940Z",
+  "sourceCommit": "e745482d8f5e33497d9ed46a2a88681456024334",
   "plugins": [
     {
       "id": "teamwork",
       "name": "Teamwork",
-      "rows": [],
-      "sources": [
+      "rows": [
         {
-          "kind": "native-product-plugin",
-          "path": "plugins/teamwork",
-          "payload": "payload/teamwork/native/teamwork",
-          "patch": "cordis.patch.yml"
+          "id": "team-work",
+          "name": "./packages/team-work/lib/index.js"
         },
         {
-          "kind": "host-compatibility-patch",
-          "path": "payload/teamwork/compatibility/session-history.patch",
-          "target": "Xiaozhuang DSH based on dsh-v0.1.3-alpha.1; review before applying"
+          "id": "subagent-codex-local",
+          "name": "@deepseek-ai/dsh-subagent-codex",
+          "config": {
+            "providerName": "codex",
+            "permissionMode": "approve-for-me"
+          }
+        },
+        {
+          "id": "tool-subagent-codex-local",
+          "name": "@deepseek-ai/dsh-tool-subagent",
+          "config": {
+            "provider": "codex",
+            "toolName": "subagent_codex",
+            "routingGuidance": "Use Codex for difficult coding, architecture, debugging, refactoring, or rigorous independent code review.",
+            "backgroundMode": "one-shot",
+            "maxDepth": "provider-managed"
+          }
+        },
+        {
+          "id": "subagent-zcode-local",
+          "name": "./packages/zcode-subagent/lib/index.js",
+          "config": {
+            "providerName": "zcode",
+            "providerId": "builtin:zai",
+            "modelId": "GLM-5.3",
+            "permissionMode": "edit"
+          }
+        },
+        {
+          "id": "tool-subagent-zcode-local",
+          "name": "@deepseek-ai/dsh-tool-subagent",
+          "config": {
+            "provider": "zcode",
+            "toolName": "subagent_zcode",
+            "routingGuidance": "Use Z Code for an alternative-model implementation, verification, product-behavior check, or independent second opinion.",
+            "backgroundMode": "one-shot",
+            "maxDepth": "provider-managed"
+          }
+        }
+      ],
+      "sources": [
+        {
+          "kind": "product",
+          "path": "plugins/teamwork"
         }
       ]
     }
   ],
   "files": [
     {
-      "path": "payload/teamwork/compatibility/session-history.patch",
+      "path": "payload/shared/history-navigation.patch",
+      "size": 11534,
+      "sha256": "c7ea4d20a38f9d02bebd9f68afed0b1daa5aea0ea3fce8afeba36c6d1233d0a4"
+    },
+    {
+      "path": "payload/shared/session-history-base.patch",
       "size": 18622,
       "sha256": "a1c1c35a61f6f027c3079d8ef87124781a163ffa37f972d6d05c27d33afa9804"
     },
     {
-      "path": "payload/teamwork/native/teamwork/cordis.patch.yml",
+      "path": "payload/shared/settings-icons.patch",
+      "size": 3863,
+      "sha256": "77e0d4dd0bb02e1946301320ec813972f5cfc0054c408c5e5dd44690e5f692a4"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/cordis.patch.yml",
       "size": 884,
       "sha256": "0c13c98becd0fc43993e56764c3f6ae6930900e7587475066491fd0f33f6c812"
     },
     {
-      "path": "payload/teamwork/native/teamwork/package.json",
+      "path": "payload/teamwork/product/plugins/teamwork/package.json",
       "size": 357,
       "sha256": "b39eafc9d87e51a65dd319ef4f534c6514190e56853ef281141a55768a0cca0e"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/assets/teamwork-icon-master.png",
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/assets/teamwork-icon-master.png",
       "size": 423621,
       "sha256": "5d878c237b49df23642446027a7601ff6231c206571509e638a3dc4f8931fdda"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/assets/teamwork-icon.png",
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/assets/teamwork-icon.png",
       "size": 16478,
       "sha256": "3fdd71dec9a3983f3aeb8a70cff4f99f735c98414b308b4069d0d6ce4dd2346f"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/lib/client.js",
-      "size": 60670,
-      "sha256": "c523403d560b4faddf38f2f7df8c1a609e29483f2e5455745e1bfe3c033b2a98"
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/lib/client.js",
+      "size": 60840,
+      "sha256": "51eb68aa4db2d658983f43e34d6539fec3a9a2ed02194348e705ff2b8b9d454e"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/lib/index.js",
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/lib/index.js",
       "size": 16686,
       "sha256": "ac5ba2ab58d666213d3b202ec862596e548e6bebf74236fa25eb5cb825bd205c"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/package.json",
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/package.json",
       "size": 648,
       "sha256": "e2f4eaeb0bdb9a1d6864b9f4dce967b28e87d8f5d6292933d8a72348e4fd2253"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/src/client.js",
-      "size": 60670,
-      "sha256": "c523403d560b4faddf38f2f7df8c1a609e29483f2e5455745e1bfe3c033b2a98"
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/src/client.js",
+      "size": 60840,
+      "sha256": "51eb68aa4db2d658983f43e34d6539fec3a9a2ed02194348e705ff2b8b9d454e"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/src/index.js",
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/src/index.js",
       "size": 16686,
       "sha256": "ac5ba2ab58d666213d3b202ec862596e548e6bebf74236fa25eb5cb825bd205c"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/test/client-ui-contract.test.mjs",
-      "size": 5004,
-      "sha256": "aaf5b64a20cc09dadbf99aaa719a934d896efedd04528f1869be4f0b32683555"
-    },
-    {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/test/external-agents.test.mjs",
-      "size": 1712,
-      "sha256": "b6c257093407f2f648435e198855cfe5ac540c113d8829853d713fbf28f84e03"
-    },
-    {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/test/plan-mode-lifecycle.test.mjs",
-      "size": 7357,
-      "sha256": "55a21a44eb90ffdaa8af3027096bab7a24b78d286c1160afaaf4ba3e68cb63f0"
-    },
-    {
-      "path": "payload/teamwork/native/teamwork/packages/team-work/test/session-history.test.mjs",
-      "size": 4412,
-      "sha256": "ee16e8d9652fe605d007863583bc49f7cafa6e210af5d2887731689a08090465"
-    },
-    {
-      "path": "payload/teamwork/native/teamwork/packages/zcode-subagent/lib/index.js",
+      "path": "payload/teamwork/product/plugins/teamwork/packages/zcode-subagent/lib/index.js",
       "size": 15921,
       "sha256": "794350508b24712e9f58f5877951004bec18034a98b3c2731ed897883a4e8c58"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/zcode-subagent/package.json",
+      "path": "payload/teamwork/product/plugins/teamwork/packages/zcode-subagent/package.json",
       "size": 319,
       "sha256": "bfd44c32565bfb8ee78d10182a5458cadb09a33ef7b9126539006c4454397805"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/zcode-subagent/src/index.js",
+      "path": "payload/teamwork/product/plugins/teamwork/packages/zcode-subagent/src/index.js",
       "size": 15921,
       "sha256": "794350508b24712e9f58f5877951004bec18034a98b3c2731ed897883a4e8c58"
     },
     {
-      "path": "payload/teamwork/native/teamwork/packages/zcode-subagent/test/provider.test.mjs",
-      "size": 4182,
-      "sha256": "26f7669c51d19509800fe065f6687c6770d4cd443947b75a27a6deb5fb49e0b6"
-    },
-    {
-      "path": "payload/teamwork/native/teamwork/README.i18n.yaml",
+      "path": "payload/teamwork/product/plugins/teamwork/README.i18n.yaml",
       "size": 426,
-      "sha256": "93079fe9a85d37e79eb10bcce2c17b88ed73ce82935fa591d7dff0372a35e7d2"
+      "sha256": "194c883274254468b02ed425f7596322a6eff9eb4af5e2e797bf573b885aa1b6"
     },
     {
-      "path": "payload/teamwork/native/teamwork/README.md",
-      "size": 1316,
-      "sha256": "a4bf6c19fb3488ee130a1ab67e93c553a256bb577a1ee7b32f2025a5a8d280d7"
+      "path": "payload/teamwork/product/plugins/teamwork/README.md",
+      "size": 1423,
+      "sha256": "a8087b20999b1393b0589421b7991f7419bee4942dbae2dad6b3a79a39fb4ddb"
     },
     {
-      "path": "payload/teamwork/native/teamwork/README.zh.md",
-      "size": 1055,
-      "sha256": "45afdb80efad8cb1c94101a786e3a713189cdb20301542d18ad8ee49dbdf8bee"
+      "path": "payload/teamwork/product/plugins/teamwork/README.zh.md",
+      "size": 1141,
+      "sha256": "eda38c7256eb06ec3f2ed7c1c389787b98f65f0b7b6e9773951780a966cf2a23"
     },
     {
-      "path": "payload/teamwork/native/teamwork/scripts/build.mjs",
+      "path": "payload/teamwork/product/plugins/teamwork/scripts/build.mjs",
       "size": 396,
       "sha256": "a1bf57f0accdaecb6cdf0bcb848fa890d2c3a0079bc4dc11e0a71f370b142ac2"
     }
@@ -138,11 +161,18 @@
   "excludes": [
     "node_modules",
     "Git metadata",
+    "tests",
     "caches",
     "credentials",
     "sessions",
     "conversation history",
-    "user settings",
-    "local runtime artifacts"
+    "user settings"
+  ],
+  "sourceRepository": "https://github.com/niushuanan/xiaozhuang-dsh",
+  "repository": "https://github.com/niushuanan/dsh-teamwork",
+  "compatibilityPatches": [
+    "payload/shared/session-history-base.patch",
+    "payload/shared/history-navigation.patch",
+    "payload/shared/settings-icons.patch"
   ]
 }
