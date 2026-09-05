@@ -2,11 +2,11 @@
 
 ## 直接安装
 
-1. 确认目标是 DSH 源码 checkout 或可写 Profile，并保留现有未提交改动。
-2. 对每个插件读取 manifest 中的 sources 与 rows。repository 源按其原相对路径合入源码；profile 源可作为 out-of-tree 包放入目标 Profile 的 packages 目录。
-3. 合并 package.json／TypeScript 引用／Web bundle 依赖和 Cordis rows；同 id 的行只合并本插件需要的 name、config 与 disabled，不覆盖其他字段。
-4. 复用目标版本已有依赖，缺失依赖按目标仓库的包管理方式安装。
-5. 执行所选包的定向构建，并从真实设置或对话入口确认能力出现。
+1. 当前 master 面向基于 `dsh-v0.1.3-alpha.1` 的 Xiaozhuang DSH 源码 checkout。保留目标未提交改动，读取目标项目说明，不使用旧 Release 代替本次修复。
+2. 将 `payload/teamwork/native/teamwork/` 作为完整文件夹合入目标 `plugins/teamwork/`。由现有目录发现器加载其 `cordis.patch.yml`，不要同时再启用旧 Profile 副本。所有 Teamwork 自有代码、资源、构建与声明都保留在该文件夹内。
+3. 目标缺少历史兼容接口时，审阅 `payload/teamwork/compatibility/session-history.patch` 并按目标实际源码合入通用核心改动；不得盲目覆盖包。已包含这些改动的主仓不重复安装补丁。该补丁没有 Teamwork 名称或插件目录依赖，移除插件后核心仍可运行。
+4. 复用宿主 0.1.3 的原生 Codex Provider、subagent 工具与 preset，按目标包管理方式链接插件依赖并构建迁移包、JSONL Provider 和插件。源码启动不代表已运行的 Host 自动重载；如需重启，先取得用户授权。
+5. 从真实设置和原会话入口验证 Teamwork、历史正文与模型选择。首次读取未标记的 v0/v1 Teamwork 历史必须安装插件；标准迁移只增加 `session.v2.jsonl[.zstd]`，不覆盖或删除旧代际。生成新版后移除插件仍能读取对话；未声明事件继续拒绝，不可通过删记录绕过。
 
 ## 冲突或失败兜底
 
