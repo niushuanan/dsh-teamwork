@@ -16,7 +16,7 @@ index 5aa631ee82..fbef2b9c2c 100644
 --- a/packages/session/session-format-v0-to-v1/src/index.ts
 +++ b/packages/session/session-format-v0-to-v1/src/index.ts
 @@ -2,6 +2,7 @@
- 
+
  export * from './codec.ts'
  export * from './dispositions.ts'
 +export * from './legacy-descriptor.ts'
@@ -72,7 +72,7 @@ index 21d171f0fc..5e895b2d62 100644
  import { assertReleasedV0Keys, releasedV0Record } from './validation-helpers.ts'
 +import { RELEASED_V0_EVENT_DISPOSITIONS } from './dispositions.ts'
 +import { normalizeReleasedSubagentDescriptor } from './legacy-descriptor.ts'
- 
+
  /** Identity format edge that promotes released v0 into released v1. */
  export const sessionFormatV0ToV1 = defineSessionFormatMigration({
 @@ -61,7 +64,12 @@ function normalizeReleasedV0Events(
@@ -163,7 +163,7 @@ index c0e0f651a1..1bcacbb167 100644
 +  normalizeReleasedSubagentDescriptor,
  } from '@deepseek-ai/dsh-session-format-v0-to-v1'
  import { assertReleasedV2Artifact, assertReleasedV2Header } from './validation.ts'
- 
+
 @@ -39,9 +41,11 @@ export const sessionFormatV1ToV2 = defineSessionFormatMigration({
      assertReleasedV1Header(header)
      return { ...header, version: 2 }
@@ -188,7 +188,7 @@ index c0e0f651a1..1bcacbb167 100644
 +          : sourceEvent
        stage(staged, oldToNew, sourceEvent.seq, event)
      }
- 
+
 diff --git a/packages/session/session-format-v1-to-v2/src/validation.ts b/packages/session/session-format-v1-to-v2/src/validation.ts
 index 5ad9b48d88..a3136540f0 100644
 --- a/packages/session/session-format-v1-to-v2/src/validation.ts
@@ -280,7 +280,7 @@ index c1cca774dd..e683d07c20 100644
 @@ -33,6 +33,24 @@ export interface SessionFormatEvent extends SessionFormatJsonObject {
    readonly data: SessionFormatJsonValue
  }
- 
+
 +/** Plugin-owned state that remains meaningful after events are densely resequenced. */
 +export interface SessionFormatStateCompatibility {
 +  /** Exact event type owned by the registering plugin. */
@@ -309,7 +309,7 @@ index 66b2c53959..53644d5e70 100644
 @@ -7,7 +7,7 @@
   * @module @deepseek-ai/dsh-session-persistence-jsonl/generation
   */
- 
+
 -import { createHash, randomBytes } from 'node:crypto'
 +import { randomBytes } from 'node:crypto'
  import {
@@ -318,7 +318,7 @@ index 66b2c53959..53644d5e70 100644
 @@ -224,10 +224,6 @@ function identity(value: JsonlPhysicalIdentity): string {
    return [value.dev, value.ino, value.size, value.mtimeNs, value.ctimeNs].join(':')
  }
- 
+
 -function fingerprint(value: JsonlPhysicalIdentity, bytes: Buffer): string {
 -  return `${identity(value)}:${createHash('sha256').update(bytes).digest('hex')}`
 -}
@@ -342,6 +342,6 @@ index 66b2c53959..53644d5e70 100644
 -      if (fingerprint(beforePublish.identity, beforePublish.bytes) !== sourceFingerprint) continue
 +      if (identity(beforePublish.identity) !== identity(source.identity)
 +        || !beforePublish.bytes.equals(source.bytes)) continue
- 
+
        const published = await publishCurrentExclusive(staged, currentPath, internals)
        if (published && internals.platform === 'win32') staged = ''

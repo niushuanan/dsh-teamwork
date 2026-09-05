@@ -26,8 +26,8 @@
   "files": [
     {
       "path": "payload/teamwork/compatibility/session-history.patch",
-      "size": 18630,
-      "sha256": "50dc501d221c3f25636013272e9aa79715c165410b086ee5cd01fc4469591636"
+      "size": 18622,
+      "sha256": "a1c1c35a61f6f027c3079d8ef87124781a163ffa37f972d6d05c27d33afa9804"
     },
     {
       "path": "payload/teamwork/native/teamwork/cordis.patch.yml",
