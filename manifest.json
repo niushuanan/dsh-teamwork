@@ -1,8 +1,12 @@
 {
   "schemaVersion": 1,
   "kind": "xiaozhuang-dsh-plugin-export",
-  "createdAt": "2026-09-05T04:05:53.940Z",
-  "sourceCommit": "e745482d8f5e33497d9ed46a2a88681456024334",
+  "createdAt": "2026-10-06T18:35:53.732129+00:00",
+  "sourceCommit": "efbbbc6a1977cf4559bf306221533eb16393664c",
+  "sourceRepository": "https://github.com/niushuanan/xiaozhuang-dsh",
+  "repository": "https://github.com/niushuanan/dsh-teamwork",
+  "targetHarness": "0.2.1-alpha.1",
+  "upgradeWorkflow": "https://github.com/oh-my-dsh/dsh-plugin-upgrade-skill/",
   "plugins": [
     {
       "id": "teamwork",
@@ -58,84 +62,30 @@
           "kind": "product",
           "path": "plugins/teamwork"
         }
-      ]
+      ],
+      "version": "1.1.0"
     }
   ],
   "files": [
     {
-      "path": "payload/shared/history-navigation.patch",
-      "size": 11534,
-      "sha256": "c7ea4d20a38f9d02bebd9f68afed0b1daa5aea0ea3fce8afeba36c6d1233d0a4"
+      "path": "payload/shared/deliverable-file-path.patch",
+      "size": 2379,
+      "sha256": "65120b70cad2e196a4bee54911eced508f45818dc7dac1f1d7fd4a9de1ff3c73"
     },
     {
-      "path": "payload/shared/session-history-base.patch",
-      "size": 18622,
-      "sha256": "a1c1c35a61f6f027c3079d8ef87124781a163ffa37f972d6d05c27d33afa9804"
+      "path": "payload/shared/native-plugin-loading.patch",
+      "size": 23851,
+      "sha256": "136f4832023c8422906bbd86ede896ecb26d066931abf59db6fe2d094d4f2325"
     },
     {
-      "path": "payload/shared/settings-icons.patch",
-      "size": 3863,
-      "sha256": "77e0d4dd0bb02e1946301320ec813972f5cfc0054c408c5e5dd44690e5f692a4"
+      "path": "payload/shared/session-state-compatibility.patch",
+      "size": 19961,
+      "sha256": "58bc1b86e2a347d0e29477877f96190379b04dc07bb3f37bd7f0f37fc3a3fef2"
     },
     {
-      "path": "payload/teamwork/product/plugins/teamwork/cordis.patch.yml",
-      "size": 884,
-      "sha256": "0c13c98becd0fc43993e56764c3f6ae6930900e7587475066491fd0f33f6c812"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/package.json",
-      "size": 357,
-      "sha256": "b39eafc9d87e51a65dd319ef4f534c6514190e56853ef281141a55768a0cca0e"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/assets/teamwork-icon-master.png",
-      "size": 423621,
-      "sha256": "5d878c237b49df23642446027a7601ff6231c206571509e638a3dc4f8931fdda"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/assets/teamwork-icon.png",
-      "size": 16478,
-      "sha256": "3fdd71dec9a3983f3aeb8a70cff4f99f735c98414b308b4069d0d6ce4dd2346f"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/lib/client.js",
-      "size": 60840,
-      "sha256": "51eb68aa4db2d658983f43e34d6539fec3a9a2ed02194348e705ff2b8b9d454e"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/lib/index.js",
-      "size": 16686,
-      "sha256": "ac5ba2ab58d666213d3b202ec862596e548e6bebf74236fa25eb5cb825bd205c"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/package.json",
-      "size": 648,
-      "sha256": "e2f4eaeb0bdb9a1d6864b9f4dce967b28e87d8f5d6292933d8a72348e4fd2253"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/src/client.js",
-      "size": 60840,
-      "sha256": "51eb68aa4db2d658983f43e34d6539fec3a9a2ed02194348e705ff2b8b9d454e"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/src/index.js",
-      "size": 16686,
-      "sha256": "ac5ba2ab58d666213d3b202ec862596e548e6bebf74236fa25eb5cb825bd205c"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/packages/zcode-subagent/lib/index.js",
-      "size": 15921,
-      "sha256": "794350508b24712e9f58f5877951004bec18034a98b3c2731ed897883a4e8c58"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/packages/zcode-subagent/package.json",
-      "size": 319,
-      "sha256": "bfd44c32565bfb8ee78d10182a5458cadb09a33ef7b9126539006c4454397805"
-    },
-    {
-      "path": "payload/teamwork/product/plugins/teamwork/packages/zcode-subagent/src/index.js",
-      "size": 15921,
-      "sha256": "794350508b24712e9f58f5877951004bec18034a98b3c2731ed897883a4e8c58"
+      "path": "payload/shared/settings-and-ui-slots.patch",
+      "size": 73183,
+      "sha256": "ce217a393adba9a3c3d1692ea14868a7d8f3d4e936a3895c216ae1f7d136a176"
     },
     {
       "path": "payload/teamwork/product/plugins/teamwork/README.i18n.yaml",
@@ -153,26 +103,84 @@
       "sha256": "eda38c7256eb06ec3f2ed7c1c389787b98f65f0b7b6e9773951780a966cf2a23"
     },
     {
+      "path": "payload/teamwork/product/plugins/teamwork/cordis.patch.yml",
+      "size": 884,
+      "sha256": "0c13c98becd0fc43993e56764c3f6ae6930900e7587475066491fd0f33f6c812"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/package.json",
+      "size": 532,
+      "sha256": "b4b00d5a7f95b40ad5c51aee0675a78bc51560c288b816189a6d096c82b171a4"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/assets/teamwork-icon-master.png",
+      "size": 423621,
+      "sha256": "5d878c237b49df23642446027a7601ff6231c206571509e638a3dc4f8931fdda"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/assets/teamwork-icon.png",
+      "size": 16478,
+      "sha256": "3fdd71dec9a3983f3aeb8a70cff4f99f735c98414b308b4069d0d6ce4dd2346f"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/lib/client.js",
+      "size": 61815,
+      "sha256": "1933b96e68e69a2a16d86635bfd6dc4efd09880eae02bfd3f4d61a812a0f5e1c"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/lib/index.js",
+      "size": 16644,
+      "sha256": "c29d7bf8022b7277ac996af9a829270df037ce6e05ad6990855f5c17981aeff6"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/package.json",
+      "size": 929,
+      "sha256": "033f7b4d90fe858e32eb6bcdf68dd46c5928f3334a300d0753425e5d9966ee3a"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/src/client.js",
+      "size": 61815,
+      "sha256": "1933b96e68e69a2a16d86635bfd6dc4efd09880eae02bfd3f4d61a812a0f5e1c"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/packages/team-work/src/index.js",
+      "size": 16644,
+      "sha256": "c29d7bf8022b7277ac996af9a829270df037ce6e05ad6990855f5c17981aeff6"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/packages/zcode-subagent/lib/index.js",
+      "size": 15921,
+      "sha256": "794350508b24712e9f58f5877951004bec18034a98b3c2731ed897883a4e8c58"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/packages/zcode-subagent/package.json",
+      "size": 319,
+      "sha256": "8c93c62e80157d160343e29438669aa92b45074a92e25c226a5bb1e4f12ee1d6"
+    },
+    {
+      "path": "payload/teamwork/product/plugins/teamwork/packages/zcode-subagent/src/index.js",
+      "size": 15921,
+      "sha256": "794350508b24712e9f58f5877951004bec18034a98b3c2731ed897883a4e8c58"
+    },
+    {
       "path": "payload/teamwork/product/plugins/teamwork/scripts/build.mjs",
       "size": 396,
       "sha256": "a1bf57f0accdaecb6cdf0bcb848fa890d2c3a0079bc4dc11e0a71f370b142ac2"
     }
   ],
+  "compatibilityPatches": [
+    "payload/shared/native-plugin-loading.patch",
+    "payload/shared/settings-and-ui-slots.patch",
+    "payload/shared/session-state-compatibility.patch",
+    "payload/shared/deliverable-file-path.patch"
+  ],
   "excludes": [
     "node_modules",
-    "Git metadata",
-    "tests",
-    "caches",
     "credentials",
     "sessions",
-    "conversation history",
-    "user settings"
-  ],
-  "sourceRepository": "https://github.com/niushuanan/xiaozhuang-dsh",
-  "repository": "https://github.com/niushuanan/dsh-teamwork",
-  "compatibilityPatches": [
-    "payload/shared/session-history-base.patch",
-    "payload/shared/history-navigation.patch",
-    "payload/shared/settings-icons.patch"
+    "attachments",
+    "user settings",
+    "caches",
+    "test outputs"
   ]
 }

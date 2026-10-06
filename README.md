@@ -1,5 +1,7 @@
 # dsh-teamwork
 
+当前 master 面向 Harness **0.2.1-alpha.1**，已使用 [dsh-plugin-upgrade-skill](https://github.com/oh-my-dsh/dsh-plugin-upgrade-skill/) 完成原生插件适配。下载当前分支获得本次源码更新；既有 Release 保持各自原版本。
+
 [English](README.en.md) | 中文
 
 [![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-111111)](https://github.com/niushuanan/xiaozhuang-dsh) [![Release](https://img.shields.io/badge/release-xiaozhuang--v0.4.2-2563eb)](https://github.com/niushuanan/dsh-teamwork/releases/tag/xiaozhuang-v0.4.2) [![MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
@@ -26,7 +28,7 @@ Teamwork 设置页复用产品统一标题层级；安装到尚未提供该共�
 - 原生 `subagent`／`subagent_fork` 是默认执行池；普通任务不会为了凑人数自动调用外部专家。
 - Codex 与 Z Code 通过 DSH 同一套 Provider 和工具协议接入。Provider 开启时工具出现，关闭时同一会话立即移除，无需重启 Host。
 - Teamwork 每轮只向主 Agent 说明当前真正可调用的专家；嵌套原生 Sub-Agent 和外部专家共享同一个 5 人并发上限。
-- 安装包复用宿主 0.1.3 的原生 Provider、工具和 preset；纯聊天和极简模式不被扩大权限，不再把旧核心包副本覆盖进新宿主。
+- 安装包复用宿主 0.2.1 的原生 Provider、工具和 preset；纯聊天和极简模式不被扩大权限，不再把旧核心包副本覆盖进新宿主。
 
 ## 内容
 
